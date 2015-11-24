@@ -27,6 +27,7 @@ public class Luong_7_TBA_game {
     static int spiderhealth;// This is the enemy that you have to defeat when the random generator spits out number 1
     static int goblinshealth;// This is the second type of enemy the player can encounter in yellow portal version
     static int golbathealth;// This is the third type of enemy one can encounter as the player and Separt attempts to defeat 
+    static int witchhealth;// This is the fourth type of enemy that one can encounter as the player battles in red/yellow portals
     static Scanner responses  = new Scanner(System.in); //this is the scanner for all the responses in the game.
     static boolean items;
     static boolean spells;
@@ -39,7 +40,7 @@ public class Luong_7_TBA_game {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-         intro();
+        intro();
     } 
     
     static void player_fights() { //method that introduces the fighting in challenge 1 of both versions
@@ -104,8 +105,6 @@ public class Luong_7_TBA_game {
     
     static void yellow_fight () { //This is the method to allow randomly selected monsters to fight the player and Separt
         monsterchoices_y_r = arenafight_y.nextInt(5);
-        monsterhealth = 150;
-        playerhealth = 500; // player leveled up to level 5 with 500 HP
         if (monsterchoices_y_r == 1 ) {
             System.out.println("You encountered a giant spider with " + spiderhealth + " health");
             spider_fight();
@@ -114,16 +113,93 @@ public class Luong_7_TBA_game {
             goblin_fights();    
     }else if(monsterchoices_y_r == 3) {
             System.out.println("YOu encountered a golbat with " + golbathealth + " health");
-            golbat_fight();
+            golbat_fights();
+    }else if(monsterchoices_y_r == 4) {
+            System.out.println("You encountered a witch with " + witchhealth + " health");
+            witch_fights();
     }
         
     }
     
     static void spider_fight() {
         enter = next.nextLine();
-        System.out.println("You ");
+        System.out.println( username + " defeat this spider to advance into the next level ");
+        System.out.println("Remember, don't get yourself into a sticky situation, or else you will regret it later.");
+        enter = next.nextLine();
+        System.out.println("'We can do this master " + username + ". Just hang on a little longer!");
+        playerhealth = 310; // player leveled up to level 5 with 500 HP
+        spiderhealth = 180; //this is the spider's health.
+        monsterisalive = true;
+        while(monsterisalive){
+            if(monsterisalive){
+            System.out.println(" The spider's HP is " + spiderhealth + ".");
+            enter = next.nextLine();
+            System.out.println("You have recently leveled up and now can use up to six different types of attacks:");
+            enter = next.nextLine();
+            System.out.println(username + ", you can cast fire, ice, lightning spells, throw rocks at the enemy,");
+            System.out.println("throw in multiple wind storms, and run");
+            attack = next.nextLine(); //attack response
+            if(attack.contains("fire")){
+                System.out.println("Alright, I'm fired up...FOOSH!!!");
+                System.out.println("The spider lost 30 HP. The spider now has " + spiderhealth + " HP.");
+                enter = next.nextLine();
+                System.out.println("You have " + playerhealth + " HP.");
+            }else if (attack.contains("ice")) {
+                System.out.println("Alright, it's gonna be a little chilly...GHAAAA!!!");
+                System.out.println("The spider lost 20 HP. The spider currently has " + spiderhealth + " HP.");
+                enter = next.nextLine();
+                System.out.println("You have " + playerhealth + " HP.");
+            }else if (attack.contains("lightning")) {
+                System.out.println("Someone's getting fried today...BAAAAAMMMM!!!");
+                System.out.println("OUCH!!! The spider lost 40 HP. It now has " + spiderhealth + " HP.");
+                enter = next.nextLine();
+                System.out.println("You have " + playerhealth + " HP.");
+            }else if (attack.contains("throw rocks")) {
+                System.out.println("Incoming Boulder...BOOOOOMM!!!");
+                System.out.println("The spider lost 30 HP. It now has " + playerhealth + " HP.");
+                enter = next.nextLine();
+                System.out.println("You now have " + playerhealth + " HP.");           
+            }else if (attack.contains("wind")) {
+                System.out.println("Alright...let's finish this up...WHIRL!!!");
+                System.out.println("The spider lost 10 HP. It now has " + spiderhealth + " HP.");
+                enter = next.nextLine();
+                System.out.println("You now have " + playerhealth + " HP.");
+            }else if (attack.contains("run")) {
+                System.out.println("Coward...there's no running. You lost a turn and don't have enough time to check your health.");
+                spider_fight();
+            }
+        }//check to see if adding an if(monsterisalive) will prevent
+            if(spiderhealth <= zero) {
+                System.out.println("You defeated the spider");
+                System.out.println("You win!");
+                monsterisalive = false;
+            }else if (monsterisalive = true) {
+            enter = next.nextLine();
+            System.out.println("Now it is the spider's turn... Brace Yourself");
+            enter = next.nextLine();
+            System.out.println("The spider swings from a web and hurls its ball-shaped webs to you...");
+            System.out.println("OUCH! " + username + " lost 50 HP...You now have " + playerhealth + ".");
+            enter = next.nextLine();
+        }
+            if(playerhealth <= zero) {
+                System.out.println("OH NO!!! You lost all your HP.");
+                play_yellowportal();
+            }
+        }
+    }
+    
+    static void goblin_fights() {
         
     }
+    
+    static void golbat_fights() {
+        
+    }
+    
+    static void witch_fights(){
+        
+    }
+    
     static void red_fight() { //This is the method to randomly select monkeys to fight the player and Kongo
         
     }
@@ -706,7 +782,7 @@ public class Luong_7_TBA_game {
            enter = next.nextLine();
            System.out.println("Creak...Creak...Creak...");
            System.out.println(username + " sees a thousand of creatures surrounding the living room.");
-           System.out.println("I don't think it is a veery good idea to take them on at once. They might look small,");
+           System.out.println("I don't think it is a very good idea to take them on at once. They might look small,");
            System.out.println("but are extremely ferocious...I suggest you turn back");
            enter = next.nextLine();
            System.out.println( username + " returns to the portals");
