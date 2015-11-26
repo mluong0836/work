@@ -20,9 +20,15 @@ public class Luong_7_TBA_game {
     static String attack;
     static Random arenafight_r = new Random ();//this will randomly select different leveled monkeys in red portal version
     static Random arenafight_y = new Random ();//this wil randomly select different leveld monkeys in yellow portal version
+    static Random naga = new Random (); // this will randomly select different types of attacks that your friend will use
+    static Random boss = new Random (); // this will ramdomly select the different types of attacks the boss will do
+    static Random miss = new Random (); //this is the player's luck...will the player be able to hit the monster or not
+    static int naga_attacks; //this is the number that will indicate the different types of moves naga will use
     static int monsterchoices_y_r; //This is the numbers that will be selected in the random monster generator in yellow portal version
     static int playerhealth;
     static int monsterhealth;//this is the monster's health for challenge 1...challenge 2 will be more complicated so I have to make another health bar
+    static int nagahealth;//this is Naga's health for the final battle between good and bad. Naga was Kongo/Separt depends on the version
+    static int bosshealth;
     static int zero = 0;
     static int spiderhealth;// This is the enemy that you have to defeat when the random generator spits out number 1
     static int goblinshealth;// This is the second type of enemy the player can encounter in yellow portal version
@@ -74,7 +80,7 @@ public class Luong_7_TBA_game {
             /*make sure that this if statement is outside the main if statement that introduces the do while loop
            location matters, not following this formula will keep cycling through this method without ever continuing the main story */
             
-              if(monsterhealth == zero) {
+              if(monsterhealth <= zero) { //check if less than works
                 monsterisalive = false;
                 //condition that will exit the while loop and return back to the main game
                   System.out.println("You won");
@@ -198,7 +204,7 @@ public class Luong_7_TBA_game {
         monsterisalive = true;
         while(monsterisalive){
             if(monsterisalive){
-            System.out.println(" The spider's HP is " + spiderhealth + ".");
+            System.out.println(" The goblin's HP is " + goblinshealth + ".");
             enter = next.nextLine();
             System.out.println("You have recently leveled up and now can use up to six different types of attacks:");
             enter = next.nextLine();
@@ -533,6 +539,7 @@ public class Luong_7_TBA_game {
                         
                         } else{
                             System.out.println("Creature encountered... Fight this creature to continue.");
+                            player_fights();
                             //after winning
                             System.out.println("You beat the creature!");
                             enter = next.nextLine();
@@ -1092,7 +1099,152 @@ public class Luong_7_TBA_game {
            boss_fight();
        }
        
-       static void boss_fight() {
+       static void boss_fight() { //this is where the fighting occurs
+           playerhealth = 2500;
+           nagahealth = 1500;
+           bosshealth = 10000;
+           System.out.println("You have recently leveled up and have increased your HP to 2000. Be careful...");
+           System.out.println("You can now cast 8 different types of spells...");
+           enter = next.nextLine();
+           System.out.println("These spells include fire, ice, wind, lightening, throw rocks, sacred sword, ");
+           System.out.println("cosmic rays, and teleport");
+           enter = next.nextLine();
+           System.out.println("Naga has his own spells don't worry about him...");
+           enter = next.nextLine();
+           System.out.println("'I can use 3 different types of dark magic and 2 different types of normal attacks'");
+           System.out.println("Don't worry, we got this "+ username + ".");
+           enter = next.nextLine();
+           System.out.println("ALL OR NOTHING!!! GHAAAA!!!");
+           enter = next.nextLine();
+           while(monsterisalive){
+               System.out.println("It is your turn...which move will you use:");
+               System.out.println("fire, ice, wind, lightening, throw rocks, sacred sword, cosmic rays, or teleport.");
+               attack = next.nextLine();
+               if(attack.contains("fire")) {
+                   System.out.println("Alright, I'm fired up...FOOOSH!!!");
+                   System.out.println("WHOA! The witch lost 30 HP. The boss now has " + bosshealth + " HP." );
+                   enter = next.nextLine();
+                   System.out.println("You now have " + playerhealth + " HP.");
+               }else if(answer.contains("ice")) {
+                   System.out.println("Alright, it's gonna be a little chilly...GHAAAA!!!");
+                   System.out.println("BRRR... The evil witch lost 20 HP. The boss now has " + bosshealth + " HP.");
+                   enter = next.nextLine();
+                   System.out.println("You now have " + playerhealth + " HP.");
+               }else if(answer.contains("lightening")) {
+                   System.out.println("Someone's gonna get fried today! ZAAAAP!!!");
+                   System.out.println("OUCH!!! The evil witch lost 40 HP. The boss now has " + bosshealth + " HP.");
+                   enter = next.nextLine();
+                   System.out.println("You now have " + playerhealth + " HP");
+               }else if (answer.contains("throw rocks")) {
+                   System.out.println("Incoming Boulder...BOOOOOMM!!!");
+                   System.out.println("The witch lost 30 HP. It now has " + bosshealth + " HP.");
+                   enter = next.nextLine();
+                   System.out.println("You now have " + playerhealth + " HP.");
+               }else if (answer.contains("sacred swords")) {
+                   System.out.println(username + " summons the guardians of the 9 sacred swords, and ");
+                   System.out.println("the guardians released their swords to punish the wicked witch...");
+                   enter = next.nextLine();
+                   System.out.println("The 9 swords punctures the wicked releasing powerful, positive energy.");
+                   System.out.println("ZHHHHNGG!!! BOOOM!!! Ouch...the boss lost 150 HP. The boss now has " + bosshealth);
+                   System.out.println("HP.");
+                   enter = next.nextLine();
+                   System.out.println("You now have " + playerhealth + " HP.");
+               }else if (answer.contains("cosmic rays")) {
+                   System.out.println(username + " casts a spell that absorbs all of the radiation from space...");
+                   System.out.println("Then a large light bombards the witch and inflicts 130 HP.");
+                   enter = next.nextLine();
+                   System.out.println("The boss now has " + bosshealth + " HP.");
+                   enter = next.nextLine();
+                   System.out.println(username + " now has " + playerhealth + " HP.");
+               }else if (answer.contains("teleport")) {
+                   System.out.println(username + " creates a blue portal and jumps inside the portal...");
+                   enter = next.nextLine();
+                   System.out.println(username + " then teleports behind the witch and strikes...Then jumps back in...");
+                   enter = next.nextLine();
+                   System.out.println("Then appears in the rear side and strikes the boss again and quickly disappears...");
+                   enter = next.nextLine();
+                   System.out.println("Finally..." + username + " strikes again on top of the witch.");
+                   enter = next.nextLine();
+                   System.out.println("WOW!!!" + username + " inflicted 210 HP. The boss now has " + bosshealth + " HP.");
+                   enter = next.nextLine();
+                   System.out.println("You now have " + playerhealth + " HP.");
+               }else if(answer.contains("wind")) {
+                   System.out.println("Alright, let's finish this up...WHIRL!!!");
+                   System.out.println("The evil witch lost 10 HP. The boss now has " + bosshealth + " HP.");
+                   enter = next.nextLine();
+                   System.out.println("You now have " + playerhealth + " HP.");
+               }
+               // It's Naga's turn
+               
+               System.out.println("It's Naga's turn...You can do this Naga!");
+               naga_attacks = naga.nextInt(6);
+               if(naga_attacks == 1){
+                   System.out.println("Naga used shadow force...");
+                   System.out.println("Naga disappears in a pitch black vortex...");
+                   enter = next.nextLine();
+                   System.out.println("GHAAAAR!!!");
+                   enter = next.nextLine();
+                   System.out.println("Naga flies out of his vortex and rams into the witch. YOUCH!");
+                   System.out.println("The boss lost 180 HP.");
+                   enter = next.nextLine();
+                   System.out.println("The evil witch now has " + bosshealth + " HP.");
+                   enter = next.nextLine();
+                   System.out.println("You now have " + playerhealth + " HP.");
+               }else if (naga_attacks == 2) {
+                   System.out.println("Naga used firebreath...A large dark ember sparks from naga's mouth and ");
+                   System.out.println("begins to build up. The large black fire surrounds the witch and burns the witch");
+                   enter = next.nextLine();
+                   System.out.println("'ARGHH! You will pay for that', the witch screamed.");
+                   enter = next.nextLine();
+                   System.out.println("WHOA!!! The fiery breath inflicted 200 HP. The boss now has" + bosshealth + " HP.");
+                   enter = next.nextLine();
+                   System.out.println("You now have " + playerhealth + " HP.");
+               }else if (naga_attacks == 3) {
+                   System.out.println("Naga used his blades of terror to torture the witch...");
+                   System.out.println("Naga creates a strong whirlwind with his wings and released thousands of sharp");
+                   System.out.println("scales that severely wounded the witch. SHINGG!!!");
+                   enter = next.nextLine();
+                   System.out.println("OWWW!!! The boss lost 150 HP and now has " + bosshealth + "HP.");
+                   enter = next.nextLine();
+                   System.out.println("You now have " + playerhealth + " HP.");                 
+               }else if (naga_attacks == 4) {
+                   System.out.println("Naga used wings of Justice. ");
+                   enter = next.nextLine();
+                   System.out.println("Naga flies up high and plunges down toward the witch...");
+                   System.out.println("Naga uppercuts the witch with his large wings and knocks the witch off her feet.");
+                   enter = next.nextLine();
+                   System.out.println("YIKES!!! Naga inflicted 210 HP. The boss has " + bosshealth + " HP.");
+                   enter = next.nextLine();
+                   System.out.println("You now have " + playerhealth + " HP.");
+               }else if (naga_attacks == 5) {
+                   System.out.println("Naga used tail whip...");
+                   System.out.println("SWWWSSS!!! BRMMM!!!");
+                   System.out.println("Naga sets himself apart and lunges forward with his tail and thrusts the witch");
+                   System.out.println("off the arena...");
+                   enter = next.nextLine();
+                   System.out.println("The witch teleports herself back into the arena, but loses 60 HP because of this.");
+                   System.out.println("The boss now has " + bosshealth + " HP.");
+                   enter = next.nextLine();
+                   System.out.println("You now have " + playerhealth + " HP.");
+               }
+               //it's the boss's turn
+               
+               if(bosshealth <= zero) {
+                   System.out.println("You defeated the boss...Congratulations, you have won the war.");
+                   enter = next.nextLine();
+                   System.out.println("The witch has disappeared, vanished forever in a black hole that consumed the boss.");
+                   enter = next.nextLine();
+                   System.out.println("That is the last time you'll ever see that hideous thing ever again.");
+                   monsterisalive = false;
+                   endgame();
+               }else if (bosshealth > zero) {
+                   System.out.println("It's the monster's turn...brace yourselves");
+                   System.out.println("'The witch has 8 different spells that she can do...she's really strong...");
+                   System.out.println("BE CAREFUL,' stated Naga.");
+                   enter = next.nextLine();
+               }
+               
+           }
            
        }
        
