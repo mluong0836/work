@@ -6,12 +6,18 @@
 package luong_7_tba_game;
     import java.util.Scanner;
     import java.util.Random;
+    import java.io.*;
+    import javax.sound.sampled.*;
+    import java.awt.Component;
+    import java.io.*;
+    import javax.swing.JFileChooser;
+    import sun.audio.*;
 /**
  *
  * @author mluong
  */
 public class Luong_7_TBA_game {
-   static String username;
+    static String username;
     static String enter;
     static String strings; // used to reply when the player fails a challenge
     static String fdoor;
@@ -50,8 +56,25 @@ public class Luong_7_TBA_game {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        intro();
+        play();//This method will start the 20 minute battle scene music
+        intro();//starts the game
     } 
+    
+    static void play() { //this is the music file
+       try {
+            JFileChooser openf = new JFileChooser();//user has to select the music
+            Component j = null;
+                openf.showOpenDialog(j);
+                File fl = openf.getSelectedFile();//allows the user to select which type of music he/she wants to hear
+                String st = fl.getAbsolutePath();
+                InputStream in = new FileInputStream(st);
+                AudioStream au = new AudioStream(in);
+                AudioPlayer.player.start(au);
+        }
+        
+        catch(Exception e ){}
+    }
+    
     
     static void player_fights() { //method that introduces the fighting in challenge 1 of both versions
         monsterisalive = true;
@@ -114,18 +137,18 @@ public class Luong_7_TBA_game {
     }   
     
     static void yellow_fight () { //This is the method to allow randomly selected monsters to fight the player and Separt
-        monsterchoices_y_r = arenafight_y.nextInt(5);
-        if (monsterchoices_y_r == 1 ) {
-            System.out.println("You encountered a giant spider with " + spiderhealth + " health");
+        monsterchoices_y_r = arenafight_y.nextInt(4);
+        if (monsterchoices_y_r == 0) {
+            System.out.println("You encountered a giant spider.");
             spider_fight();
-        }else if(monsterchoices_y_r == 2) {
-            System.out.println("You encountered a goblin with " + goblinshealth + " health");
+        }else if(monsterchoices_y_r == 1) {
+            System.out.println("You encountered a goblin.");
             goblin_fights();    
-    }else if(monsterchoices_y_r == 3) {
-            System.out.println("You encountered a golbat with " + golbathealth + " health");
+    }else if(monsterchoices_y_r == 2) {
+            System.out.println("You encountered a golbat with.");
             golbat_fights();
-    }else if(monsterchoices_y_r == 4) {
-            System.out.println("You encountered a witch with " + witchhealth + " health");
+    }else if(monsterchoices_y_r == 3) {
+            System.out.println("You encountered a witch.");
             witch_fights();
     }
         
@@ -421,7 +444,7 @@ public class Luong_7_TBA_game {
     }
     
     static void red_fight() { //This is the method to randomly select monkeys to fight the player and Kongo
-        
+        monsterchoices_y_r = arenafight_r.nextInt(4);
     }
     
     static void intro() { //This is where you would here the story line
@@ -1069,8 +1092,90 @@ public class Luong_7_TBA_game {
            enter = next.nextLine();
            System.out.println("Alright...3...2...1...Ready- or NOT...GO!!!");
            enter = next.nextLine();
-           System.out.println("");
-       }
+           System.out.println("There is a large open clearance up ahead.");
+           enter = next.nextLine();
+           System.out.println(username + " hears loud monkey sounds from above. BRACE YOURSELF!!!");
+           red_fight();
+           //after the player beats the enemy...
+           System.out.println("Congratulations... this is gonna be a difficult journey and Kongo can only lead the way.");
+           enter = next.nextLine();
+           System.out.println("There's three diverging paths that will lead to two different paths...");
+           enter = next.nextLine();
+           System.out.println("'Take the left path...I can sense the evil witch that way', said Kongo.");
+           enter = next.nextLine();
+           System.out.println(username +  " takes the right path");
+           enter= next.nextLine();
+           System.out.println("FRSSSH...FRSSHHH...WHOSHHH...");
+           enter = next.nextLine();
+           System.out.println("What's that noice...Let's get closer to check it out.");
+           enter = next.nextLine();
+           System.out.println(username + " and Kongo walked through the big clearance. THEN...");
+           enter = next.nextLine();
+           System.out.println("OOHHH!!! AAHHH!!! AAHHH!!!     OH NO...");
+           red_fight();
+           //after the player beats the enemy
+           System.out.println("You're on a roll!");
+           enter = next.nextLine();
+           System.out.println("There is now two diverging paths...");
+           enter = next.nextLine();
+           System.out.println("'Take the straight path...That's the shortest way outta here...");
+           enter = next.nextLine();
+           System.out.println(username + " takes the straight path and arrives at the opening of a waterfall.");
+           System.out.println("However, the water is black instead of a clear/pure water color...");
+           System.out.println("YUCK! Separt exclaimed! 'That witch sure doesn't know how to clean up after she's threw eating...'");
+           enter = next.nextLine();
+           System.out.println("He! He! He!");
+           enter = next.nextLine();
+           System.out.println("Watch yourselves...something is emerging out of the water!");
+           red_fight();
+           //after you win
+           System.out.println("Alright...you got the hang of this now!");
+           enter = next.nextLine();
+           System.out.println("There is now three diverging paths...");
+           enter = next.nextLine();
+           System.out.println("Take the left one...I think it isn't a trap.");
+           enter = next.nextLine();
+           System.out.println(username + " takes the left path...");
+           System.out.println("Looks like it is safe...Guess we got lucky!");
+           enter = next.nextLine();
+           System.out.println("Now there are three diverging paths...");
+           enter = next.nextLine();
+           System.out.println("'Take the straight path', said Separt.");
+           System.out.println("That's the only way out. The other two are traps that will just bring you back to the beginning");
+           System.out.println("Trust me...");
+           enter = next.nextLine();
+           System.out.println(username + " takes the straight path.");
+           enter = next.nextLine();
+           System.out.println("There is a large arena up ahead. Let's be prepared...");
+           enter = next.nextLine();
+           System.out.println("ARRGH!!!");
+           red_fight();
+           //after you win
+           System.out.println("Alright...let's finish this up...");
+           enter = next.nextLine();
+           System.out.println("Now there is only a straight path ahead...");
+           System.out.println(username + " takes the straight path and sees a large black portal...");
+           System.out.println("That will lead you to the...");
+           enter = next.nextLine();
+           System.out.println("BOOM! POW! VRRM! ARHGHHGH!");
+           red_fight();
+           //after the player beats the enemy
+           System.out.println("Gosh...that was rude. Please continue Kongo" + username + " stated.");
+           enter = next.nextLine();
+           System.out.println("As I was saying...that is the path that will lead us to the wicked witch that is");
+           System.out.println("trying to hunt you down...Don't worry...I got your back...I'll help you in this battle");
+           System.out.println("Shall we jump into the portal?");
+           answer = responses.nextLine();
+           if(answer.contains("n")) {
+               System.out.println("We have no more time...the witch send more of her minions to take us on...");
+               enter = next.nextLine();
+               System.out.println(username + " prepares to jump");
+           }else if(answer.contains("y")) {
+               System.out.println("Alright get ready to jump!!!");
+           }
+           bossportal();
+       } 
+       
        
        static void portal_denied() { //this will take the player into the living room in which the player will understand that
                                      //they must turn back and go inside the portals.
@@ -1227,8 +1332,8 @@ public class Luong_7_TBA_game {
                    // It's Naga's turn
                 }else if (bosshealth > zero) {
                System.out.println("It's Naga's turn...You can do this Naga!");
-               naga_attacks = naga.nextInt(6);
-               if(naga_attacks == 1){
+               naga_attacks = naga.nextInt(5);
+               if(naga_attacks == 0){
                    System.out.println("Naga used shadow force...");
                    System.out.println("Naga disappears in a pitch black vortex...");
                    enter = next.nextLine();
@@ -1241,7 +1346,7 @@ public class Luong_7_TBA_game {
                    System.out.println("The evil witch now has " + bosshealth + " HP.");
                    enter = next.nextLine();
                    System.out.println("You now have " + playerhealth + " HP.");
-               }else if (naga_attacks == 2) {
+               }else if (naga_attacks == 1) {
                    System.out.println("Naga used firebreath...A large dark ember sparks from naga's mouth and ");
                    System.out.println("begins to build up. The large black fire surrounds the witch and burns the witch");
                    enter = next.nextLine();
@@ -1251,7 +1356,7 @@ public class Luong_7_TBA_game {
                    System.out.println("WHOA!!! The fiery breath inflicted 200 HP. The boss now has" + bosshealth + " HP.");
                    enter = next.nextLine();
                    System.out.println("You now have " + playerhealth + " HP.");
-               }else if (naga_attacks == 3) {
+               }else if (naga_attacks == 2) {
                    System.out.println("Naga used his blades of terror to torture the witch...");
                    System.out.println("Naga creates a strong whirlwind with his wings and released thousands of sharp");
                    System.out.println("scales that severely wounded the witch. SHINGG!!!");
@@ -1260,7 +1365,7 @@ public class Luong_7_TBA_game {
                    System.out.println("OWWW!!! The boss lost 150 HP and now has " + bosshealth + "HP.");
                    enter = next.nextLine();
                    System.out.println("You now have " + playerhealth + " HP.");                 
-               }else if (naga_attacks == 4) {
+               }else if (naga_attacks == 3) {
                    System.out.println("Naga used wings of Justice. ");
                    enter = next.nextLine();
                    System.out.println("Naga flies up high and plunges down toward the witch...");
@@ -1270,7 +1375,7 @@ public class Luong_7_TBA_game {
                    System.out.println("YIKES!!! Naga inflicted 210 HP. The boss has " + bosshealth + " HP.");
                    enter = next.nextLine();
                    System.out.println("You now have " + playerhealth + " HP.");
-               }else if (naga_attacks == 5) {
+               }else if (naga_attacks == 4) {
                    System.out.println("Naga used tail whip...");
                    System.out.println("SWWWSSS!!! BRMMM!!!");
                    System.out.println("Naga sets himself apart and lunges forward with his tail and thrusts the witch");
