@@ -6,12 +6,6 @@
 package luong_7_tba_game;
     import java.util.Scanner;
     import java.util.Random;
-    /*import java.io.*;
-    import javax.sound.sampled.*;
-    import java.awt.Component;
-    import java.io.*;
-    import javax.swing.JFileChooser;
-    import sun.audio.*;*/
 /**
  *
  * @author mluong
@@ -51,7 +45,7 @@ public class Luong_7_TBA_game {
     static int wolf3;//this is the health of one of the wolves belonging to the wolf pack in red portal version
     static int snake;//this is the health of the fourth type of enemy that can be encountered in red portal version (snake)
     static Scanner responses  = new Scanner(System.in); //this is the scanner for all the responses in the game.
-    static int potions = 15;//healing potions
+    static int potions = 5;//healing potions
     static boolean spells;
     static boolean door;// boolean to open the door and start the game
     static boolean gameplay;//boolean to keep the main game going and to end the game
@@ -70,27 +64,11 @@ public class Luong_7_TBA_game {
         while(gameplay) {
         /*#extra credit made a separate class and music selector below:*/
         Luong_7_audioclass pl = new Luong_7_audioclass();//this is how to use classes, pl._ to start the methods
+        pl.soundsystem_commands();//this is the object used to call upon the public method sound system
         intro();//starts the game       
         } 
     } 
-    
-    /*static void play() { //this is the music file
-       try {
-            JFileChooser openf = new JFileChooser();//user has to select the music
-            Component j = null;
-                openf.showOpenDialog(j);
-                File fl = openf.getSelectedFile();//allows the user to select which type of music he/she wants to hear
-                String st = fl.getAbsolutePath();
-                InputStream in = new FileInputStream(st);
-                AudioStream au = new AudioStream(in);
-                AudioPlayer.player.start(au);
-        }
-        
-        catch(Exception e ){}
-    }
-    */
-    
-                                                //#method1()
+                                         //#method1()
     static void player_fights() { //method that introduces the fighting in challenge 1 of both versions
         monsterisalive = true;
         
@@ -205,31 +183,31 @@ public class Luong_7_TBA_game {
             attack = next.nextLine(); //attack response
             if(attack.contains("fire")){
                 System.out.println("Alright, I'm fired up...FOOSH!!!");
-                spiderhealth = spiderhealth-30;//this is the damge dealt
+                spiderhealth = spiderhealth-30;//this is the damage dealt
                 System.out.println("The spider lost 30 HP. The spider now has " + spiderhealth + " HP.");
                 enter = next.nextLine();
                 System.out.println("You have " + playerhealth + " HP.");
             }else if (attack.contains("ice")) {
                 System.out.println("Alright, it's gonna be a little chilly...GHAAAA!!!");
-                spiderhealth = spiderhealth-20;//this is the damge dealt
+                spiderhealth = spiderhealth-20;//this is the damage dealt
                 System.out.println("The spider lost 20 HP. The spider currently has " + spiderhealth + " HP.");
                 enter = next.nextLine();
                 System.out.println("You have " + playerhealth + " HP.");
             }else if (attack.contains("lightning")) {
                 System.out.println("Someone's getting fried today...BAAAAAMMMM!!!");
-                spiderhealth = spiderhealth-40;//this is the damge dealt
+                spiderhealth = spiderhealth-40;//this is the damage dealt
                 System.out.println("OUCH!!! The spider lost 40 HP. It now has " + spiderhealth + " HP.");
                 enter = next.nextLine();
                 System.out.println("You have " + playerhealth + " HP.");
             }else if (attack.contains("throw rocks")) {
                 System.out.println("Incoming Boulder...BOOOOOMM!!!");
-                spiderhealth = spiderhealth-30;//this is the damge dealt
+                spiderhealth = spiderhealth-30;//this is the damage dealt
                 System.out.println("The spider lost 30 HP. It now has " + playerhealth + " HP.");
                 enter = next.nextLine();
                 System.out.println("You now have " + playerhealth + " HP.");           
             }else if (attack.contains("wind")) {
                 System.out.println("Alright...let's finish this up...WHIRL!!!");
-                spiderhealth = spiderhealth-10;//this is the damge dealt
+                spiderhealth = spiderhealth-10;//this is the damage dealt
                 System.out.println("The spider lost 10 HP. It now has " + spiderhealth + " HP.");
                 enter = next.nextLine();
                 System.out.println("You now have " + playerhealth + " HP.");
@@ -335,8 +313,8 @@ public class Luong_7_TBA_game {
             }
         }//check to see if adding an if(monsterisalive) will prevent
             if(goblinshealth <= zero) {
-                System.out.println("You defeated the goblin!");
-                System.out.println("You win!");
+                System.out.println("You defeated the goblin!");//#hero defeats the enemy, which affects the enemies health
+                System.out.println("You win!");                //and is able to gain a potion left behind as a reward
                 enter = next.nextLine();
                 System.out.println("\n");
                 System.out.println(username + " found a rag left behind by the goblin...");
@@ -346,6 +324,7 @@ public class Luong_7_TBA_game {
                     System.out.println(username + " lifts up the rag to see that there is a potion.");
                     potions = potions+1;
                     System.out.println(username + " puts the potion inside the bag which already contains " + potions + " potions.");
+                    //player gets a potion if they won
                     enter = next.nextLine();
                 }else{
                     System.out.println(username + " kicks the rag to the side and continues on.");
@@ -1233,6 +1212,8 @@ public class Luong_7_TBA_game {
                         direction = next.nextLine();
                         if(direction.contains("left")) {
                             System.out.println("Oh NO!!! You fell in the trap.");//#enemyobject-traps
+                            //As you can see, traps in the maze will result in the player to start over the challenge again
+                            //in a certain checkpoint...
                             backtocheckpoint1();
                      
                             }else{
@@ -2143,6 +2124,10 @@ public class Luong_7_TBA_game {
                            enter = next.nextLine();
                            System.out.println("The witch summons a dark cloud from above with her staff...");
                            enter = next.nextLine();
+                           /* #enemyobject
+                            The witch affects the protagonist/player by harming the player's health through savage attacks that 
+                            inflicts large amounts of damage to the player. 
+                           */
                            System.out.println("The dark cloud duplicates and strikes " + username + ".");
                            enter = next.nextLine();
                            System.out.println("Ouch " + username + " loses 200 HP.");
@@ -2576,5 +2561,4 @@ public class Luong_7_TBA_game {
                 }
             }
        }
-}
-                                    
+}                                   
