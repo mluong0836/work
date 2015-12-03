@@ -59,8 +59,8 @@ public class Luong_7_TBA_game {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        //play();//This method will start the 20 minute battle scene music
-        gameplay= true;
+         //play();//This method will start the 20 minute battle scene music
+        gameplay = true;
         while(gameplay) {
         /*#extra credit made a separate class and music selector below:*/
         Luong_7_audioclass pl = new Luong_7_audioclass();//this is how to use classes, pl._ to start the methods
@@ -68,7 +68,7 @@ public class Luong_7_TBA_game {
         intro();//starts the game       
         } 
     } 
-                                         //#method1()
+                                         
     static void player_fights() { //method that introduces the fighting in challenge 1 of both versions
         monsterisalive = true;
         
@@ -137,10 +137,16 @@ public class Luong_7_TBA_game {
              
         }while(monsterisalive);      
     }   
-                                                //#method2()
-    static void yellow_fight () { //This is the method to allow randomly selected monsters to fight the player and Separt
-                                  //this method will create a randomizer that will choose an integer from 0-3 and correspond
-                                  //with a method signaling to another class
+    
+          //#method1()
+    /* This is the method to allow randomly selected monsters to fight the player and Separt
+       this method will create a randomizer that will choose an integer from 0-3 and correspond
+       with a method signaling to another method. This makes it easier to go through and 
+       separate out the enemies because every time an enemy is suppose to show up, I can 
+       just call on this method to select the monsters.
+    */
+    
+    static void yellow_fight () {
         monsterchoices_y_r = arenafight_y.nextInt(4);
         if (monsterchoices_y_r == 0) {//if integer is zero, you will fight a spider
             System.out.println("You encountered a giant spider.");//#enemyobject-enemy that player tries to defeat
@@ -158,7 +164,7 @@ public class Luong_7_TBA_game {
         
     }
     
-            //#method3()
+            //method
      /* This method will introduce the player to the spider, and now the player will have to fight it, using spells...
         Similar to a combat arena...where healing, attacking, and defending are all necessary components. Rewards are 
         given at the end (healing potions) */
@@ -249,11 +255,12 @@ public class Luong_7_TBA_game {
             }
         }
     }
-                    //#method4()
+                    //#method2()
     /* This method will introduce the player to the goblins that will fight you similarily to the spider method...
        There will be fighting, healing, and defending during this battle. Again rewards are given at the end known as
-       potions. */
-    
+       potions. I used this method so that every time the random enemy generator spit out a 2 the player will be taken 
+       the goblin. This saves both time and space.
+    */    
     static void goblin_fights() {
         enter = next.nextLine();
         System.out.println( username + " defeat this goblin to advance into the next level ");
@@ -347,7 +354,7 @@ public class Luong_7_TBA_game {
             }
         }
     }
-             //#method5()
+             //method
     /* This method will allow the player to have a battle againsts a golbat... There will be 7 choices, but mainly
        5 spells/real attacks. The heal option is for healing and run method is just a small trap built. Rewards is also
        a potion. I have many more methods, over 30 , but these are the first 5. Storyline is kinda long...
@@ -1350,9 +1357,12 @@ public class Luong_7_TBA_game {
            enter = next.nextLine();
            backtocheckpoint1_version2();  //Dead end...Will return back to the first challenge second version
 }
-       
+                  //#method3()
+       /*  This method is used to organize the right branch of the maze in the first challenge. Although the path
+           will continue to diverge, the main separation occurs in the beginning.     
+       */
        static void door2challenge_rightpath() {
-           System.out.println("YOu met a creature...");
+           System.out.println("You met a creature...");
            System.out.println("Get ready to RIP!!!");
            player_fights();
            //after you beat the creature...
@@ -1558,6 +1568,13 @@ public class Luong_7_TBA_game {
            }
            }
        
+             //#method4();
+       /* This method brings the player to the portals once the player has found the red keys and opened the door
+          with the red key. As a result, the player will walk into a room where a mini sub-stroy will describe the
+          next few challenges that the player will have to complete to win the game. I used a separate method in this case
+          is for organizational means because the player is now at a new checkpoint in the game. So, it would be easier
+          for me to recall this method once the player dies...
+       */
        
        static void portal_introduction() {
            System.out.println("There are two portals that obviously lead to different paths.");
@@ -1944,6 +1961,7 @@ public class Luong_7_TBA_game {
            enter = next.nextLine();
            System.out.println("ALL OR NOTHING!!! GHAAAA!!!");
            enter = next.nextLine();
+           monsterisalive = true;
            //#while 
            /* while loop that will let players fight the boss */
            while(monsterisalive){
@@ -2095,6 +2113,11 @@ public class Luong_7_TBA_game {
                 }
                
                if(bosshealth <= zero) { //check to see if boss is still alive
+                   //#win
+                   /* This is the conditions to win. The boss's health must equal to or less than zero. If you win the 
+                      boolean monsterisalive is equal to false and the player will come to the endgame method to 
+                      displayt he credits...
+                   */
                    System.out.println("You defeated the boss...Congratulations, you have won the war.");
                    enter = next.nextLine();
                    System.out.println("The witch has disappeared, vanished forever in a black hole that consumed the boss.");
@@ -2120,7 +2143,7 @@ public class Luong_7_TBA_game {
                    if (boss_attacks == 0) {
                        System.out.println("'Night Shadow!'");
                        //this will determine which player gets hit; you or Naga
-                       if(which == 0) { //player gets hiy
+                       if(which == 0) { //player gets hit
                            enter = next.nextLine();
                            System.out.println("The witch summons a dark cloud from above with her staff...");
                            enter = next.nextLine();
@@ -2416,7 +2439,7 @@ public class Luong_7_TBA_game {
                        }
                    }
                }
-               //#lose-playr loses all of HP 
+               //#lose-player loses all of HP 
                if(playerhealth <= zero) { //in case player loses all of his/her health
                    System.out.println("OH NO!!!" + username + " lost was defeated!");
                    System.out.println("Naga currently has " + nagahealth + " HP.");
@@ -2518,7 +2541,14 @@ public class Luong_7_TBA_game {
                System.out.println("You are at maximum health.");
            }
     }   
-       
+               //#method5()
+       /* This method will constantly be called because everytime the player fights, he/she will be given the 
+          opportunity to heal. As a result, I used this method to prevent the redundant typing of the same set of codes
+          when the player wants to heal. This method will first check whether or not the player has any health potions
+          left. If the player does, the program will check if the player's health is set to the conditions, such as below
+          3500, equal to 3500, or over 3500. Depending on the conditions that are satisfied, the game will decide if the 
+          player is able to take the potion.
+       */
        static void healing_challenge3() { //this is where the player will be able to heal himself/herself in boss challenge
            System.out.println(" You open up the bag to check your inventory...");
            enter = next.nextLine();
