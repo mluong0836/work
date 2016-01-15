@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="100" height="100" tilewidth="32" tileheight="32" nextobjectid="1">
+ <tileset firstgid="1" name="floor" tilewidth="0" tileheight="0" tilecount="0"/>
+ <tileset firstgid="1" name="f" tilewidth="32" tileheight="32" tilecount="16">
+  <image source="rocks.png" width="128" height="128"/>
+ </tileset>
+ <layer name="Tile Layer 1" width="100" height="100">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAA+3Vt2EDQQADwac8Zdl/tbouFsEECKYB7O26rqez57OXsxunfj17O3s/++Dc97PPs6+zb879c/Z79nf24Nz1X7J+LLv+S9aPZdd/yfqx7PovWT+WXf8l68ey679k/Vh2/ZesH8uu/5L1Y9n1X7J+LLv+S9aPZdd/yfqx7PovWT+WXf8l68ey679k/Vh2/ZesH8uu/5L1Y9n1X7J+LLv+S9aPZdd/yfqx7PovWT+WXf8l68ey679k/Vh2/ZesH8uu/5L1Y9n1X7J+LLv+S9aPZdd/yfqx7PovWT+WXf8l68ey679k/Vh2/ZesH8uu/5L1Y9n1X7J+LLv+S9aPZdd/yfqx7PovWT+WXf8l68ey679k/Vh2/ZesH8uu/5L1Y9n1X7J+LLv+S9aPZdd/yfqx7PovWT+WXf8l68ey679k/Vh2/ZesH8uu/5L1Y9n/hnZRAECcAAA=
+  </data>
+ </layer>
+</map>
